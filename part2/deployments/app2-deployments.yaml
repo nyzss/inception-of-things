@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
       - name: app2-container
-        image: docker.io/paulbouwer/hello-kubernetes
+        image: paulbouwer/hello-kubernetes
         ports:
-        - containerPort: 80  # port inside the container (must match the app's exposed port)
+        - containerPort: 8080  # port inside the container (must match the app's exposed port)
 
         resources:
           limits:
@@ -35,12 +35,3 @@ spec:
         # env:
         # - name: NODE_ENV
         #   value: "production"
-
-        # volumeMounts:
-        # - name: app2-storage
-        #   mountPath: "/app/data"
-
-      # volumes:
-      # - name: app2-storage
-      #   emptyDir: {}
-

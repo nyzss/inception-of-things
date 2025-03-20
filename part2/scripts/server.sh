@@ -3,7 +3,8 @@
 echo "SERVER_IP: ${SERVER_IP}"
 
 # sh -s - --node-ip 192.168.56.110
-curl -sfL https://get.k3s.io | sh -s - --node-ip ${SERVER_IP}
+# curl -sfL https://get.k3s.io | sh -s - --node-ip ${SERVER_IP}
+curl -sfL https://get.k3s.io | sh -s - --node-external-ip ${SERVER_IP}
 
 chmod 644 /etc/rancher/k3s/k3s.yaml
 
