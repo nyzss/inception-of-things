@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
       - name: app1-container
-        image: paulbouwer/hello-kubernetes
+        image: nginx:latest
         ports:
-        - containerPort: 8080  # port inside the container (must match the app's exposed port)
+        - containerPort: 80  # port inside the container (must match the app's exposed port)
 
         resources:
           limits:
@@ -29,6 +29,14 @@ spec:
           requests:
             cpu: "250m"  # request 0.25 CPU cores initially
             memory: "128Mi"  # request 128MB memory initially
+        volumeMounts:
+        - name: nginx-content
+          mountPath: /usr/share/nginx/html
+
+      volumes:
+      - name: nginx-content
+        configMap:
+          name: app1-content
 
       restartPolicy: Always
 

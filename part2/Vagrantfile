@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "deployments/", "/vagrant_deployments"
   config.vm.synced_folder "services/", "/vagrant_services"
   config.vm.synced_folder "ingress/", "/vagrant_ingress"
+  config.vm.synced_folder "configmaps/", "/vagrant_configmaps"
 
   config.vm.define "okocaS" do |control|
     control.vm.hostname = "okocaS"

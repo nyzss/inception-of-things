@@ -14,6 +14,10 @@ kubectl apply -f /vagrant_deployments/app1-deployments.yaml
 kubectl apply -f /vagrant_deployments/app2-deployments.yaml
 kubectl apply -f /vagrant_deployments/app3-deployment.yaml
 
+kubectl apply -f /vagrant_configmaps/app1-configmap.yaml
+kubectl apply -f /vagrant_configmaps/app2-configmap.yaml
+kubectl apply -f /vagrant_configmaps/app3-configmap.yaml
+
 kubectl get pods
 
 kubectl apply -f /vagrant_services/app1-service.yaml
