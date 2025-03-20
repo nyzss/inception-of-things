@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-deployment
+  labels:
+    app: app1
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1
+
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: app1-container
+        image: docker.io/paulbouwer/hello-kubernetes
+        ports:
+        - containerPort: 80  # port inside the container (must match the app's exposed port)
+
+        resources:
+          limits:
+            cpu: "500m"  # max 0.5 CPU cores
+            memory: "256Mi"  # max 256MB memory
+          requests:
+            cpu: "250m"  # request 0.25 CPU cores initially
+            memory: "128Mi"  # request 128MB memory initially
+
+      restartPolicy: Always
+
+        # env:
+        # - name: NODE_ENV
+        #   value: "production"
+
+        # volumeMounts:
+        # - name: app1-storage
+        #   mountPath: "/app/data"
+
+      # volumes:
+      # - name: app1-storage
+      #   emptyDir: {}
+
