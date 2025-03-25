@@ -31,6 +31,13 @@ print_info() {
 print_section "Creating K3d cluster"
 k3d cluster create --servers 1 --agents 2
 
+if ! k3d cluster list | grep -q "k3s-default"; then
+   print_log "Creating new K3d cluster named 'k3s-default'..."
+   k3d cluster create --servers 1 --agents 2 --wait
+else
+   print_info "Cluster 'k3s-default' already exists, using it"
+fi
+
 print_log "Setting up kubeconfig..."
 k3d kubeconfig merge ${USERNAME} --kubeconfig-switch-context
 
