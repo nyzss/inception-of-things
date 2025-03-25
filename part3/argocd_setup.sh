@@ -48,13 +48,13 @@ print_section "Installing ArgoCD"
 print_log "Applying ArgoCD manifests..."
 kubectl apply -n $ARGOCD_NAMESPACE -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-print_info "Waiting for ArgoCD to be ready..."
-kubectl wait --for=condition=available --timeout=180s deployment/argocd-server -n $ARGOCD_NAMESPACE || true
-print_log "ArgoCD installed"
+# print_info "Waiting for ArgoCD to be ready..."
+# kubectl wait --for=condition=available --timeout=180s deployment/argocd-server -n $ARGOCD_NAMESPACE || true
+# print_log "ArgoCD installed"
 
 print_section "Exposing ArgoCD server"
 print_log "Setting up port-forward for ArgoCD server..."
-pkill -f "kubectl port-forward.*argocd-server" 2>/dev/null || true
+kubectl patch svc argocd-server -n $ARGOCD_NAMESPACE -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl port-forward svc/argocd-server -n "$ARGOCD_NAMESPACE" $ARGOCD_PORT:443 --address 0.0.0.0 > /dev/null 2>&1 &
 sleep 3
 print_log "ArgoCD server exposed on port $ARGOCD_PORT"
