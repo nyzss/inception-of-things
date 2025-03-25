@@ -100,6 +100,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 check_success "Docker installed" "Failed to install Docker"
 
 sudo usermod -aG docker ${USERNAME}
+newgrp docker
 check_success "User ${USERNAME} added to docker group" "Failed to add user to docker group"
 
 print_info "Testing Docker installation..."

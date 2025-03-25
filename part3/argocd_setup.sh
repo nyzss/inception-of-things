@@ -44,7 +44,8 @@ check_success() {
 check_dependencies() {
   print_section "Checking dependencies"
 
-  if ! command -v kubectl &> /dev/null; then
+  # Check if kubectl is installed
+  if ! which kubectl > /dev/null 2>&1; then
     print_error "kubectl is not installed. Please install it first."
     exit 1
   fi
