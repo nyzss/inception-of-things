@@ -50,7 +50,7 @@ check_dependencies() {
     exit 1
   fi
 
-  if ! command -v k3d &> /dev/null; then
+  if ! which k3d &> /dev/null; then
     print_error "k3d is not installed. Please install it first."
     exit 1
   fi
