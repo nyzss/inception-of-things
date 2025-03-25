@@ -72,6 +72,9 @@ check_success "HTTP/HTTPS allowed through firewall" "Failed to allow HTTP/HTTPS 
 sudo ufw allow 6443/tcp
 check_success "Kubernetes API server port allowed" "Failed to allow Kubernetes API server port"
 
+sudo ufw allow 8080/tcp
+check_success "ArgoCD port allowed" "Failed to allow ArgoCD port"
+
 sudo ufw --force enable
 check_success "Firewall enabled" "Failed to enable firewall"
 

@@ -96,6 +96,9 @@ done
 
 ARGO_PASSWORD=$(kubectl get secret argocd-initial-admin-secret -n $ARGOCD_NAMESPACE -o jsonpath="{.data.password}" | base64 --decode)
 
+# save it into a file
+echo $ARGO_PASSWORD > ./argo_password.txt
+
 if [ -z "$ARGO_PASSWORD" ]; then
   print_info "Unable to retrieve ArgoCD password, using default 'admin'"
   ARGO_PASSWORD="admin"
