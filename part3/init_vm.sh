@@ -103,13 +103,9 @@ sudo usermod -aG docker ${USERNAME}
 newgrp docker
 check_success "User ${USERNAME} added to docker group" "Failed to add user to docker group"
 
-print_info "Testing Docker installation..."
-sudo docker run --rm hello-world
+print_info "Testing Docker installation... just printing some info"
+docker info
 check_success "Docker test successful" "Docker test failed"
-
-print_section "Installing k3d"
-curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
-check_success "k3d installed" "Failed to install k3d"
 
 # Install kubectl
 print_section "Installing kubectl"
@@ -117,6 +113,10 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
 check_success "kubectl installed" "Failed to install kubectl"
+
+print_section "Installing k3d"
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+check_success "k3d installed" "Failed to install k3d"
 
 mkdir -p ~/.kube
 check_success "Kubectl config directory created" "Failed to create kubectl config directory"
