@@ -29,7 +29,7 @@ print_info() {
 }
 
 print_section "Creating K3d cluster"
-k3d cluster create ${USERNAME} --servers 1 --agents 2
+k3d cluster create --servers 1 --agents 2
 
 print_log "Setting up kubeconfig..."
 k3d kubeconfig merge ${USERNAME} --kubeconfig-switch-context
