@@ -29,12 +29,7 @@ print_info() {
 }
 
 print_section "Creating K3d cluster"
-if ! k3d cluster list | grep -q "${USERNAME}"; then
-  print_log "Creating new K3d cluster named '${USERNAME}'..."
-  k3d cluster create ${USERNAME} --servers 1 --agents 2 --wait
-else
-  print_info "Cluster '${USERNAME}' already exists, using it"
-fi
+k3d cluster create ${USERNAME} --servers 1 --agents 2
 
 print_log "Setting up kubeconfig..."
 k3d kubeconfig merge ${USERNAME} --kubeconfig-switch-context
