@@ -36,7 +36,7 @@ else
 fi
 
 print_log "Setting up kubeconfig..."
-k3d kubeconfig merge ${USERNAME} --kubeconfig-switch-context
+k3d kubeconfig merge k3s-default --kubeconfig-switch-context
 
 print_section "Creating namespaces"
 kubectl create namespace $ARGOCD_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
